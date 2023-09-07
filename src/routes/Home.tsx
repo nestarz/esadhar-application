@@ -66,7 +66,7 @@ export default async (
         />
       </head>
       <body className="">
-        <div className="flex flex-col font-scto gap-4 bg-white pb-48">
+        <div className="flex flex-col font-scto gap-4 bg-white overflow-hidden">
           <div className="px-16 p-4 flex flex-col gap-24 bg-white w-fit max-w-6xl flex">
             <div className="flex gap-4 justify-between">
               <div className="uppercase">
@@ -110,7 +110,8 @@ export default async (
                                 id={`text${imageIndex}`}
                                 className={clsx(args.className, {
                                   "no-underline": Type === "s",
-                                  "hover:(no-underline font-bold)": Type === "a",
+                                  "hover:(no-underline font-bold)":
+                                    Type === "a",
                                 })}
                               >
                                 {children}
@@ -152,6 +153,12 @@ export default async (
                 );
               })}
             </div>
+            <footer>
+              Mise en page réalisée via des technologies web open-source, code hébergé sur{" "}
+              <a href="https://github.com/nestarz/esadhar-application" className="underline font-bold">
+                github.com/nestarz/esadhar-application
+              </a>
+            </footer>
           </div>
         </div>
       </body>
