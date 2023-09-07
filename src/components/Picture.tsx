@@ -62,19 +62,24 @@ const Picture: FunctionComponent<
 
   return (
     <picture className="contents">
-      {sizes.map(
-        (size) =>
-          !!src && (
-            <source
-              className="hidden"
-              key={size}
-              srcSet={sharp(src, { resize: size })}
-              media={mediaQueries[size as keyof typeof mediaQueries]}
-            />
-          )
-      )}
+      {!src.includes(".gif") &&
+        sizes.map(
+          (size) =>
+            !!src && (
+              <source
+                className="hidden"
+                key={size}
+                srcSet={sharp(src, { resize: size })}
+                media={mediaQueries[size as keyof typeof mediaQueries]}
+              />
+            )
+        )}
       <img
-        src={sharp(src, { resize: sizes[sizes.length - 1] ?? maxWidth })}
+        src={
+          src.includes(".gif")
+            ? src
+            : sharp(src, { resize: sizes[sizes.length - 1] ?? maxWidth })
+        }
         alt={alt}
         {...props}
       />
