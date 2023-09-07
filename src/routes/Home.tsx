@@ -74,13 +74,15 @@ export default async (
                 <Fragment>
                   <div className="uppercase">
                     <div className="leading-none text-xs">Candidature</div>
-                    {about.images_json?.[0]?.url && (
-                      <Picture
-                      className="-ml-[0.27rem]"
-                        src={about.images_json?.[0]?.url}
-                        maxWidth={400}
-                      />
-                    )}
+                    <a href="https://bureaudouble.com" target="_blank">
+                      {about.images_json?.[0]?.url && (
+                        <Picture
+                          className="-ml-[5px] max-w-[15rem] w-full"
+                          src={about.images_json?.[0]?.url}
+                          maxWidth={400}
+                        />
+                      )}
+                    </a>
                   </div>
                   <div className="font-medium uppercase relative text-right">
                     <div
