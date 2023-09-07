@@ -30,7 +30,7 @@ export default {
         },
         {
           fontFamily: "'Scto Grotesk B'",
-          src: "url('/static/assets/fonts/SctoGroteskB-Bold.woff2') format('woff2')",
+          src: "url('/static/assets/fonts/SctoGroteskB-Medium.woff2') format('woff2')",
           fontWeight: "bold",
           fontStyle: "normal",
           fontDisplay: "swap",
@@ -44,7 +44,7 @@ export default {
         },
         {
           fontFamily: "'Scto Grotesk B'",
-          src: "url('/static/assets/fonts/SctoGroteskB-Regular.woff2') format('woff2')",
+          src: "url('/static/assets/fonts/SctoGroteskB-Light.woff2') format('woff2')",
           fontWeight: "normal",
           fontStyle: "normal",
           fontDisplay: "swap",
