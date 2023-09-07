@@ -87,7 +87,10 @@ export default async (
             </div>
             <div className="flex flex-col gap-8 backdrop-blur relative">
               {data?.posts?.map((post, index, arr) => {
-                let imageIndex = 0;
+                const prevIndex = arr
+                  .slice(0, index)
+                  .reduce((p, v) => p + (v.images_json?.length ?? 0), 0);
+                let imageIndex = prevIndex;
                 return (
                   <div className="break-after-auto break-inside-avoid flex gap-8 relative before:(aspect-square bg-yellow-400/[0.15] bg-clip-padding content-[' '] blur-[236px] absolute top-[90vh] w-full z-0 border-[12px] border-solid border-transparent)">
                     {index > 0 && index !== arr.length - 2 && (
@@ -104,6 +107,7 @@ export default async (
                             <Fragment>
                               <Type
                                 {...args}
+                                id={`text${imageIndex}`}
                                 className={clsx(args.className, {
                                   "no-underline": Type === "s",
                                 })}
@@ -125,21 +129,22 @@ export default async (
                       })}
                     </div>
                     <div className="flex flex-col gap-8">
-                      {(post ?? [])?.images_json?.map((d, index) => (
-                        <div className="flex flex-col gap-1">
+                      {post.images_json?.map((d, index) => (
+                        <a
+                          className="flex flex-col gap-1 hover:underline"
+                          href={`#text${index}`}
+                          id={`fig${index}`}
+                        >
                           <Picture
                             src={d.url}
                             alt=""
                             className="rounded m-0 mix-blend-multiply"
                             maxWidth={480}
                           />
-                          <a
-                            className="font-bold text-xs w-full py-1"
-                            href={`#text${index + 1}`}
-                          >
+                          <span className="font-bold text-xs w-full py-1">
                             fig. {index + 1}.
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       ))}
                     </div>
                   </div>
