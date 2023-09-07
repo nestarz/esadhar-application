@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'Scto Grotesk B';
+    src: url('static/assets/fonts/SctoGroteskB-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Dutch801 RmHd BT';
+    src: url('static/assets/fonts/Dutch801BT-RomanHeadline.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Scto Grotesk B';
+    src: url('static/assets/fonts/SctoGroteskB-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Scto Grotesk B Regular';
+    src: url('static/assets/fonts/SctoGroteskB-RegularItalic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: '.';
+    src: url('static/assets/fonts/4003d8cb3e32b216681fc54f50ffdc52.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
