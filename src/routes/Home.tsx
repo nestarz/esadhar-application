@@ -5,6 +5,7 @@ import { Query } from "@/types.d.ts";
 import Picture from "@/src/components/Picture.tsx";
 import createVNode from "outils/createVNode.ts";
 import { Fragment } from "islet/preact/jsx-runtime";
+import clsx from "clsx";
 import css from "noop-tag";
 
 export const config: RouteConfig = {
@@ -94,14 +95,30 @@ export default async (
                         {post?.title}
                       </div>
                     )}
-                    <div className="rounded -mt-4 p-4 [&_p+div]:-mt-2 prose-p:text-justify prose-strong:font-medium [&_div+p]:mt-0 [&_s]:(text-xs no-underline font-bold -translate-y-2 inline-block) col-span-3 prose prose-black prose-h3:(font-normal uppercase text-xs)">
+                    <div className="rounded -mt-4 p-4 [&_p+div]:-mt-2 prose-p:text-justify prose-strong:font-medium [&_div+p]:mt-0 col-span-3 prose prose-black prose-h3:(font-normal uppercase text-xs)">
                       {createVNode({
                         html: post?.content,
                         h: (Type, args, children) => {
                           if (Type === "s") imageIndex += 1;
                           return (
                             <Fragment>
-                              <Type {...args}>{children}</Type>
+                              <Type
+                                {...args}
+                                className={clsx(args.className, {
+                                  "no-underline": Type === "s",
+                                })}
+                              >
+                                {children}
+                              </Type>
+                              {Type === "s" && (
+                                <a
+                                  href={`#fig${imageIndex}`}
+                                  alt=""
+                                  className="text-xs no-underline font-bold -translate-y-2 inline-block"
+                                >
+                                  fig. {imageIndex}
+                                </a>
+                              )}
                             </Fragment>
                           );
                         },
@@ -116,9 +133,12 @@ export default async (
                             className="rounded m-0 mix-blend-multiply"
                             maxWidth={480}
                           />
-                          <span className="font-bold text-xs w-full py-1">
+                          <a
+                            className="font-bold text-xs w-full py-1"
+                            href={`#text${index + 1}`}
+                          >
                             fig. {index + 1}.
-                          </span>
+                          </a>
                         </div>
                       ))}
                     </div>
