@@ -1,0 +1,4 @@
+*.env
+!.env.default
+*.DS_Store
+**/*.DS_Store
