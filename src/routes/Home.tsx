@@ -203,7 +203,7 @@ export default async (
               . <br />
               La{" "}
               <a
-                href="https://esadhar.storage.bureaudouble.com/application/esadhar_08092023.pdf"
+                href="https://esadhar.storage.bureaudouble.com/candidature/esadhar_08092023.pdf"
                 className="underline hover:(no-underline font-bold)"
               >
                 version PDF
