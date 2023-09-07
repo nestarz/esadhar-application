@@ -132,8 +132,8 @@ export default async (
                       {post.images_json?.map((d, index) => (
                         <a
                           className="flex flex-col gap-1 hover:underline"
-                          href={`#text${index}`}
-                          id={`fig${index}`}
+                          href={`#text${index + prevIndex}`}
+                          id={`fig${index + prevIndex}`}
                         >
                           <Picture
                             src={d.url}
@@ -142,7 +142,7 @@ export default async (
                             maxWidth={480}
                           />
                           <span className="font-bold text-xs w-full py-1">
-                            fig. {index + 1}.
+                            fig. {prevIndex + index + 1}.
                           </span>
                         </a>
                       ))}
