@@ -66,7 +66,7 @@ export default async (
         />
       </head>
       <body className="">
-        <div className="flex flex-col font-scto gap-4 bg-white">
+        <div className="flex flex-col font-scto gap-4 bg-white overflow-y-hidden pb-48">
           <div className="px-16 p-4 flex flex-col gap-24 bg-white w-fit max-w-6xl flex">
             <div className="flex gap-4 justify-between">
               <div className="uppercase">
