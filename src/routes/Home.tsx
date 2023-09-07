@@ -66,7 +66,7 @@ export default async (
         />
       </head>
       <body className="">
-        <div className="flex flex-col font-scto gap-4 bg-white overflow-y-hidden pb-48">
+        <div className="flex flex-col font-scto gap-4 bg-white pb-48">
           <div className="px-16 p-4 flex flex-col gap-24 bg-white w-fit max-w-6xl flex">
             <div className="flex gap-4 justify-between">
               <div className="uppercase">
@@ -92,7 +92,7 @@ export default async (
                   .reduce((p, v) => p + (v.images_json?.length ?? 0), 0);
                 let imageIndex = prevIndex;
                 return (
-                  <div className="break-after-auto break-inside-avoid flex gap-8 relative before:(aspect-square bg-yellow-400/[0.15] bg-clip-padding content-[' '] blur-[236px] absolute top-[90vh] w-full z-0 border-[12px] border-solid border-transparent)">
+                  <div className="break-after-auto break-inside-avoid flex gap-8 relative before:(pointer-events-none aspect-square bg-yellow-400/[0.15] bg-clip-padding content-[' '] blur-[236px] absolute top-[90vh] w-full z-0 border-[12px] border-solid border-transparent)">
                     {index > 0 && index !== arr.length - 2 && (
                       <div className="text-sm whitespace-nowrap font-bold col-span-full">
                         {post?.title}
@@ -110,6 +110,7 @@ export default async (
                                 id={`text${imageIndex}`}
                                 className={clsx(args.className, {
                                   "no-underline": Type === "s",
+                                  "hover:(no-underline font-bold)": Type === "a",
                                 })}
                               >
                                 {children}
@@ -118,7 +119,7 @@ export default async (
                                 <a
                                   href={`#fig${imageIndex}`}
                                   alt=""
-                                  className="text-xs no-underline font-bold -translate-y-2 inline-block"
+                                  className="text-xs no-underline font-bold -translate-y-2 inline-block hover:(underline)"
                                 >
                                   fig. {imageIndex}
                                 </a>
