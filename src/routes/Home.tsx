@@ -24,6 +24,7 @@ export default async (
         about {
           title
           content
+          images_json
         }
         posts {
           title
@@ -66,23 +67,31 @@ export default async (
         />
       </head>
       <body className="">
-        <div className="flex flex-col font-scto gap-4 bg-white overflow-hidden">
+        <div className="flex flex-col font-scto gap-4 bg-white">
           <div className="px-16 p-4 flex flex-col gap-24 bg-white w-fit max-w-6xl flex">
             <div className="flex gap-4 justify-between">
-              <div className="uppercase">
-                <div className="leading-none text-xs">Candidature</div>Bureau
-                Double
-              </div>
               {data?.about?.map((about) => (
-                <div className="font-medium uppercase relative text-right">
-                  <div
-                    dangerouslySetInnerHTML={{ __html: about?.content }}
-                    className="text-xs prose prose-xs ml-auto"
-                  />
-                  <div className="text-xs prose prose-xs ml-auto">
-                    08 Septembre 2023
+                <Fragment>
+                  <div className="uppercase">
+                    <div className="leading-none text-xs">Candidature</div>
+                    {about.images_json?.[0]?.url && (
+                      <Picture
+                      className="-ml-[0.27rem]"
+                        src={about.images_json?.[0]?.url}
+                        maxWidth={400}
+                      />
+                    )}
                   </div>
-                </div>
+                  <div className="font-medium uppercase relative text-right">
+                    <div
+                      dangerouslySetInnerHTML={{ __html: about?.content }}
+                      className="text-xs prose prose-xs ml-auto"
+                    />
+                    <div className="text-xs prose prose-xs ml-auto">
+                      08 Septembre 2023
+                    </div>
+                  </div>
+                </Fragment>
               ))}
             </div>
             <div className="flex flex-col gap-8 backdrop-blur relative">
@@ -154,8 +163,12 @@ export default async (
               })}
             </div>
             <footer>
-              Mise en page réalisée via des technologies web open-source, code hébergé sur{" "}
-              <a href="https://github.com/nestarz/esadhar-application" className="underline font-bold">
+              Mise en page réalisée via des technologies web open-source, code
+              hébergé sur{" "}
+              <a
+                href="https://github.com/nestarz/esadhar-application"
+                className="underline font-bold"
+              >
                 github.com/nestarz/esadhar-application
               </a>
             </footer>

@@ -145,6 +145,7 @@ export type About = {
   id?: Maybe<Scalars['Int']['output']>;
   title: Scalars['String']['output'];
   content: Scalars['String']['output'];
+  images_json?: Maybe<Scalars['JSON']['output']>;
 };
 
 
@@ -157,10 +158,16 @@ export type AboutContentArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
+
+export type AboutImages_JsonArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type About_Bool_Exp = {
   id?: InputMaybe<Int_Comparison_Exp>;
   title?: InputMaybe<String_Comparison_Exp>;
   content?: InputMaybe<String_Comparison_Exp>;
+  images_json?: InputMaybe<String_Comparison_Exp>;
   _or?: InputMaybe<Array<About_Bool_Exp>>;
   _and?: InputMaybe<Array<About_Bool_Exp>>;
 };
@@ -169,6 +176,7 @@ export type About_Order_By = {
   id?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
   content?: InputMaybe<Order_By>;
+  images_json?: InputMaybe<Order_By>;
 };
 
 export type About_Aggregate = {
@@ -294,6 +302,7 @@ export type About_Set_Input = {
   id?: InputMaybe<Scalars['Int']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   content?: InputMaybe<Scalars['String']['input']>;
+  images_json?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type About_Pk_Columns_Input = {
@@ -304,6 +313,7 @@ export type About_Insert_Input = {
   id?: InputMaybe<Scalars['Int']['input']>;
   title: Scalars['String']['input'];
   content: Scalars['String']['input'];
+  images_json?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type About_On_Conflict = {
