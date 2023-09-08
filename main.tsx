@@ -2,9 +2,11 @@ import "std/dotenv/load.ts";
 
 import createContentManagementSystem from "bureau";
 import createGQLite from "gqlite";
+import createAnalytics from "double_analytics";
 import * as Islands from "islet/server";
 import createRenderPipe from "outils/createRenderPipe.ts";
 import createBasicAuth from "outils/createBasicAuth.ts";
+import { createCors } from "outils/cors.ts";
 import { middleware } from "outils/fresh/middleware.ts";
 import * as staticFileRoute from "outils/staticFileRoute.ts";
 import renderToString from "preact-render-to-string";
@@ -14,12 +16,12 @@ import toReadableStream from "to-readable-stream";
 
 import * as Home from "@/src/routes/Home.tsx";
 import * as ApiSharp from "@/src/routes/api/sharp.ts";
-import { database, getS3Uri, s3Client } from "@/src/utils/database.ts";
+import { databases, getS3Uri, s3Client } from "@/src/utils/database.ts";
 import twindConfig from "@/twind.config.ts";
 import { twind, virtual } from "@twind/core";
 import TwindStream from "@twind/with-react/readableStream";
 
-const graphql = await createGQLite(database, {
+const graphql = await createGQLite(databases.main, {
   generateTypeScriptDefinitions: true,
 });
 
@@ -52,9 +54,12 @@ await Deno.serve(
       s3Client,
       getS3Uri,
       graphqlPath: "/graphql",
-      prefix: "/admin"
+      prefix: "/admin",
     }),
-    ...[Home, ApiSharp].reduce((acc, module) => ({ ...acc, ...route(module) }), {}),
+    ...[Home, ApiSharp].reduce(
+      (acc, module) => ({ ...acc, ...route(module) }),
+      {}
+    ),
     [staticFileRoute.config.routeOverride!]: staticFileRoute.createHandler({
       baseUrl: import.meta.url,
     }),
@@ -64,6 +69,17 @@ await Deno.serve(
       prefix: "./islands/",
       importMapFileName: "deno.json",
       esbuildOptions: { minify: false },
+    }),
+    "/analytics": await createAnalytics({
+      prefix: "/analytics",
+      database: databases.analytics,
+      frontMiddleware: createBasicAuth(
+        Deno.env.get("BASIC_AUTH_USERNAME")!,
+        Deno.env.get("BASIC_AUTH_PASSWORD")!
+      )((_req, ctx) => ctx.next()),
+      apiMiddleware: createCors({ hostnames: ["esadhar.bureaudouble.com"] })(
+        (_req, ctx) => ctx.next()
+      ),
     }),
   })
 ).finished;
